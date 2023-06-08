@@ -1,0 +1,277 @@
+/* Styling for the container div */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: white;
+    height: 100vh;
+}
+
+#scoreBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+#high-score1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+
+#high-score2 {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+}
+
+/* Styling for the score box */
+.scoreBox {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Styling for each player's score */
+#score {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    left: 50px;
+
+}
+
+#high-score {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    align-self: center;
+
+}
+
+/* Styling for the canvas container */
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Styling for the canvas */
+.canvas-style {
+    border: 2px solid white;
+    margin: 10px;
+}
+
+/* Styling for the reset button */
+.resetBtn {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    padding: 5px 10px;
+    background-color: #ff5f5f;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.resetBtn:hover {
+    background-color: #e24545;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #212529;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    background-color: #4CAF50;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.play {
+    background-color: #4CAF50;
+}
+
+.resume {
+    background-color: #f44336;
+}
+
+.multiplayer {
+    background-color: #2196F3;
+}
+
+.description {
+    background-color: #cab111;
+}
+
+.settings {
+    background-color: #9c27b0;
+}
+
+#friends-list {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* change to desired background color */
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.friends-navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.friends-navbar ul {
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+}
+
+.friends-navbar li {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    background-color: #f5f5f5;
+    /* change to desired background color */
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #212529;
+    /* change to desired text color */
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.friends-navbar ul li i {
+    font-size: 20px;
+    /* Adjust the value to increase or decrease the icon size */
+}
+
+.friends-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.friends-tab {
+    display: none;
+    padding: 10px;
+}
+
+.friends-tab.active {
+    display: block;
+}
+
+#friends-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #212529;
+    /* change to desired title color */
+}
+
+.friends-content ul {
+    margin: 0;
+    padding: 0;
+}
+
+.friends-content ul li {
+    margin-bottom: 5px;
+    /* Additional styles for the list items */
+}
+
+/* Existing CSS rules */
+
+#friends-list .icon {
+    cursor: pointer;
+}
+
+
+
+#history {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 300px;
+    background-color: #212529;
+    color: #fff;
+    font-size: 16px;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.request-lists {
+    display: flex;
+    flex-direction: column;
+}
+
+#received-requests-button, #sent-requests-button {
+    margin: 10px;
+    border-radius: 7px;
+
+}
+
+#search-results {
+    color: #ffffff;
+}
+
+#search {
+    margin-bottom: 15px;
+}
+
+.display {
+    color: #ffffff;
+}
+
+ul {
+    list-style-type: none;
+    color: #ffffff;
+}
+
+/* do table  */
+table {
+    margin: 0;
+}
