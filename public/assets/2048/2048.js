@@ -3,7 +3,7 @@ var score = 0;
 var highscore = 0;
 var rows = 4;
 var columns = 4;
-
+import { createScore } from '../highscore/createscore.js';
 window.onload = function () {
   setGame();
 };
@@ -273,6 +273,11 @@ function gameover() {
 
     // Show the game over popup
     showGameOverPopup();
+
+    // Create a new score
+    var userId = localStorage.getItem("userid"); // Replace with the actual user ID
+    var gameId = localStorage.getItem("gameid"); // Replace with the actual game ID
+    createScore(userId, gameId, score);
   }
 }
 

@@ -31,7 +31,9 @@
         <div id="high-score">
           High Score : <span id="highest-score">0</span>
         </div>
-        <button id="reset" onclick="resetGame()" class="resetBtn">Reset</button>
+        
+        <button id="reset" class="resetBtn" onclick="location.reload()">Reset</button>
+        
       </div>
       <div class="canvas-container">
         <canvas
@@ -43,7 +45,7 @@
       </div>
     </div>
 
-    <script src="snake.js"></script>
+    <script src="snake.js" type="module"></script>
     <!-- placed it here so that it runs after rendering html  -->
   </body>
 </html>

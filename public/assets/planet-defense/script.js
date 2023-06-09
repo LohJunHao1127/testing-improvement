@@ -2,7 +2,7 @@
 
 //PLAY IN FULL PAGE VIEW!
 
-
+import { createScore } from '../highscore/createscore.js';
 window.addEventListener("DOMContentLoaded", game);
 
 //General sprite load
@@ -76,6 +76,9 @@ function game() {
         } else {
             var dist;
             if(gameOver) {
+                let userid = localStorage.getItem("userid")
+                let gameid = localStorage.getItem("gameid")
+                createScore(userid,gameid,destroyed)
                 dist = Math.sqrt(((e.offsetX - cW/2) * (e.offsetX - cW/2)) + ((e.offsetY - (cH/2 + 45 + 22)) * (e.offsetY - (cH/2+ 45 + 22))));
                 if (dist < 27) {
                     if(e.type == 'click') {

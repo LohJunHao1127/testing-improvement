@@ -1,5 +1,6 @@
 // JavaScript code for the game
-
+//importing createScore()
+import { createScore } from "../../highscore/createscore.js";
 // Constants for block colors
 const COLORS = ["cyan", "blue", "orange", "yellow", "lime", "purple", "red"];
 
@@ -312,46 +313,8 @@ function endGame() {
   const storedUserId = localStorage.getItem("userid");
   const storedGameId = localStorage.getItem("gameid");
   const highscore = score; // Get the score from the game
+  createScore(storedUserId,storedGameId,highscore)
 
-  // Send the highscore, user ID, and game ID to the API
-  fetch("/api/highscore/createNewScore", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userid: storedUserId,
-      gameid: storedGameId,
-      score:highscore,
-    }),
-  })
-    .then((response) => {
-      // Check the response status code
-      if (response.ok) {
-        console.log("Connected to:", response.url);
-        return response.json();
-      } else {
-        throw new Error(`Request failed with status ${response.status}`);
-      }
-    })
-    .then((data) => {
-      console.log(data);
-      if (data.success) {
-        alert("Score insterted successfully.");
-      } else {
-        alert("Failed to submit score. Please try again.");
-        console.error("Error:", data);
-        // Log additional information about the error
-        console.log("Error status:", data.status);
-        console.log("Error message:", data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // Log additional information about the error
-      console.log("Error status:", error.status);
-      console.log("Error message:", error.message);
-    });
   retrieveHighscore();
   location.reload();
 }
