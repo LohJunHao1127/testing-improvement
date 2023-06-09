@@ -2,7 +2,7 @@ const pool = require('../database');
 
 module.exports.getLowestscore = function (userid) {
   return pool
-    .query("SELECT userid, MIN(highscore) AS LowestHighscore FROM records WHERE userid = ? GROUP BY userid ", [userid])
+    .query("SELECT userid, MIN(highscore) AS LowestHighscore FROM record WHERE userid = ? GROUP BY userid ", [userid])
     .then((result) => {
       console.log(result)
       if (result.length === 0) {
@@ -15,7 +15,7 @@ module.exports.getLowestscore = function (userid) {
 
 module.exports.getAverageHighscore = function (userid) {
   return pool
-    .query("SELECT AVG (highscore) AS average_highscore FROM records WHERE userid = ?", [userid])
+    .query("SELECT AVG (highscore) AS average_highscore FROM record WHERE userid = ?", [userid])
     .then((result) => {
       if (result.length === 0 || result[0].average_highscore === null) {
         return null; // Return null when no average high score is found
