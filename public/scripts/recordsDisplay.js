@@ -40,6 +40,20 @@ document.addEventListener("DOMContentLoaded", function () {
         displayRecords(displayUserid);
     };
 
+    const displayUseridButton = document.getElementById("display userid");
+
+    displayUseridButton.onclick = function () {
+        // Get the user ID from the input field
+        const Userid = localStorage.getItem("userid");
+        const useridContainer = document.getElementById("useridContainer");
+        useridContainer.innerHTML = ""; // Clear the existing content
+        const useridElement = document.createElement("p");
+        useridElement.textContent = `User ID: ${Userid}`;
+        useridContainer.appendChild(useridElement);
+
+    };
+
+
     const displayButton2 = document.getElementById("display2");
 
     // Add onclick event listener to the display button
