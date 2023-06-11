@@ -316,7 +316,8 @@ function endGame() {
   createScore(storedUserId,storedGameId,highscore)
 
   retrieveHighscore();
-  location.reload();
+  setTimeout(location.reload(), 5000);
+  
 }
 
 // Wait for the DOM to fully load
