@@ -102,6 +102,47 @@ function endGame() {
     game.active = false
     document.querySelector('#restartScreen').style.display = 'flex'
     document.querySelector('#finalScore').innerHTML = score
+    // Send the highscore, user ID, and game ID to the API
+    let userid = localStorage.getItem("userid")
+    let gameid = localStorage.getItem("gameid")
+    fetch("/api/highscore/createNewScore", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userid: userid,
+        gameid: gameid,
+        score: score,
+      }),
+    })
+      .then((response) => {
+        // Check the response status code
+        if (response.ok) {
+          console.log("Connected to:", response.url);
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          alert("Score inserted successfully.");
+        } else {
+          alert("Failed to submit score. Please try again.");
+          console.error("Error:", data);
+          // Log additional information about the error
+          console.log("Error status:", data.status);
+          console.log("Error message:", data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Log additional information about the error
+        console.log("Error status:", error.status);
+        console.log("Error message:", error.message);
+      });
   }, 2000)
 
   createParticles({
@@ -231,7 +272,7 @@ function animate() {
           projectile.position.x - bomb.position.x,
           projectile.position.y - bomb.position.y
         ) <
-          projectile.radius + bomb.radius &&
+        projectile.radius + bomb.radius &&
         !bomb.active
       ) {
         projectiles.splice(i, 1)
@@ -295,7 +336,7 @@ function animate() {
             invader.position.x - bomb.position.x,
             invader.position.y - bomb.position.y
           ) <
-            invaderRadius + bomb.radius &&
+          invaderRadius + bomb.radius &&
           bomb.active
         ) {
           score += 50
@@ -318,10 +359,10 @@ function animate() {
       projectiles.forEach((projectile, j) => {
         if (
           projectile.position.y - projectile.radius <=
-            invader.position.y + invader.height &&
+          invader.position.y + invader.height &&
           projectile.position.x + projectile.radius >= invader.position.x &&
           projectile.position.x - projectile.radius <=
-            invader.position.x + invader.width &&
+          invader.position.x + invader.width &&
           projectile.position.y + projectile.radius >= invader.position.y
         ) {
           setTimeout(() => {
