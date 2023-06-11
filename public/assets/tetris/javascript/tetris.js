@@ -316,7 +316,7 @@ function endGame() {
   createScore(storedUserId,storedGameId,highscore)
 
   retrieveHighscore();
-  setTimeout(location.reload(), 5000);
+  score = 0;
   
 }
 
