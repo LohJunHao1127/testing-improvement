@@ -271,6 +271,7 @@ function clearLines() {
 
 // Function to start the game
 function startGame() {
+  score = 0;
   initializeBoard();
   createBlock();
   updateScoreboard();
