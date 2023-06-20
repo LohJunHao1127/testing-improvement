@@ -6,11 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add onclick event listener to the delete button
     deleteButton.onclick = function () {
         // Get the user ID from the input field
-        const deleteUseridInput = document.getElementById("userid-1");
-        const deleteUserid = parseInt(deleteUseridInput.value);
+        const adminID = localStorage.getItem("userid")
+        if(adminID == 1){
+            const deleteUseridInput = document.getElementById("userid-1");
+            const deleteUserid = parseInt(deleteUseridInput.value);
+    
+            // Perform the delete operation with the user ID
+            deleteRecord(deleteUserid);
+        }
+        
 
-        // Perform the delete operation with the user ID
-        deleteRecord(deleteUserid);
     };
 
     const deleteSelfButton = document.getElementById("delete-self");
