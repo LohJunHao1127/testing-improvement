@@ -38,7 +38,7 @@ app.use('/api/profile', usersRouter);
 app.use('/api/update', usersRouter);
 
 
-app.use('/api/users', usersRouter);
+
 
 
 app.use('/api/settings',settingsRouter)

@@ -1,30 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/users.js"); // Import the User model
 const settings = require("../models/settings.js");
+const bodyParser = require("body-parser");
+router.use(bodyParser.json());
 
 // Middleware to require login for protected routes
-function requireLogin(req, res, next) {
-  const userid = req.session.userid;
-  if (!userid) {
-    // Store the original URL of the settings page in the session
-    req.session.originalUrl = req.originalUrl;
-    return res.redirect("/login");
-  }
-  next();
-}
+// function requireLogin(req, res, next) {
+//   const userid = req.session.userid;
+//   if (!userid) {
+//     // Store the original URL of the settings page in the session
+//     req.session.originalUrl = req.originalUrl;
+//     return res.redirect("/login");
+//   }
+//   next();
+// }
 
 // Get user settings page
-router.get("/", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
+router.get("/:userid/favorite-settings", async (req, res) => {
+  const userid = req.params.userid;
   try {
     const userSettings = await settings.getUserSettings(userid);
     if (!userSettings) {
       // Handle the case when no user settings are found
       return res.status(404).send("User settings not found");
     }
-    const { username, background, volume } = userSettings;
-    res.render("settings", { userid, username, background, volume }); // Pass the `userid`, `username`, `background`, and `volume` to the view template
+    const { background, volume } = userSettings;
+
+    res.status(200).json({ background:background ,volume:volume , success: true, message: 'Settings retrieved successfully' });
   } catch (error) {
     console.error("Failed to retrieve user settings", error);
     res.status(500).send("Internal Server Error");
@@ -33,11 +35,13 @@ router.get("/", requireLogin, async (req, res) => {
 
 
 // Get username for the settings page
-router.get("/users/:userid", requireLogin, async (req, res) => {
+router.get("/username/:userid", async (req, res) => {
   const userid = req.params.userid;
   try {
+    console.log("username-test");
     const username = await settings.getUsernameByUserId(userid);
-    res.json({ username });
+    console.log(username + "tesing router");
+    res.status(200).json({ username: username, success: true, message: 'username retrieved successfully' });
   } catch (error) {
     console.error("Failed to fetch username", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -47,8 +51,8 @@ router.get("/users/:userid", requireLogin, async (req, res) => {
 
 
 // Get user background preference
-router.get("/background", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
+router.get("/background/:userid", async (req, res) => {
+  const userid = req.params.userid;
   try {
     const userSettings = await settings.getUserSettings(userid);
     res.json({ background: userSettings.background });
@@ -59,9 +63,9 @@ router.get("/background", requireLogin, async (req, res) => {
 });
 
 // Update user background preference
-router.post("/background", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
-  const { background } = req.body;
+router.post("/background", async (req, res) => {
+  
+  const { userid,background } = req.body;
   try {
     await settings.updateBackgroundPreference(userid, background);
     res.json({ message: "User background updated successfully" });
@@ -72,8 +76,8 @@ router.post("/background", requireLogin, async (req, res) => {
 });
 
 // Get user volume preference
-router.get("/volume", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
+router.get("/volume/:userid", async (req, res) => {
+  const userid = req.params.userid;
   try {
     const userSettings = await settings.getUserSettings(userid);
     res.json({ volume: userSettings.volume });
@@ -84,9 +88,9 @@ router.get("/volume", requireLogin, async (req, res) => {
 });
 
 // Update user volume preference
-router.post("/volume", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
-  const { volume } = req.body;
+router.post("/volume", async (req, res) => {
+  
+  const { userid,volume } = req.body;
   try {
     await settings.updateVolumePreference(userid, volume);
     res.json({ message: "User volume updated successfully" });
@@ -97,8 +101,8 @@ router.post("/volume", requireLogin, async (req, res) => {
 });
 
 // Delete user settings
-router.delete("/", requireLogin, async (req, res) => {
-  const userid = req.session.userid;
+router.delete("/delete/:userid", async (req, res) => {
+  const userid = req.params.userid;
   try {
     await settings.deleteUserSettings(userid);
     req.session.destroy(); // Destroy the session after deleting user settings

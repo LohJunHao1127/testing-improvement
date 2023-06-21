@@ -20,9 +20,16 @@
       <h2>User Information</h2>
       <p>Welcome, <span id="username-placeholder"></span>!</p>
       <p>Favorite Settings: <span id="favorite-settings"></span></p>
-      <button onclick="displayFavoriteSettings()" id="get-favorite-settings-btn" style="display: none;">Get My Favorite Settings</button>
-      <button id="save-btn" style="display: none;">Save Settings</button>
-      <button id="delete-btn" style="display: none;">Delete Settings</button>
+      
+      <div style="display: inline-flex; margin-top: 10px; gap: 10px;">
+        <button id="get-favorite-settings-btn">Get My Favorite Settings</button>
+
+        <button id="save-btn">Save Settings</button>
+      
+        <button id="delete-btn">Delete Settings</button>
+      </div>
+
+      
     </div>
     <div class="settings-section">
       <h2>Theme</h2>
@@ -35,6 +42,9 @@
     <div class="settings-section">
       <h2>Volume</h2>
       <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider">
+    </div>
+    <div>
+      <input type="number" min="0" max="100" >
     </div>
   </div>
 

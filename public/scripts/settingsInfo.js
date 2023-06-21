@@ -3,43 +3,24 @@ document.addEventListener("DOMContentLoaded", function() {
   const selectedTheme = getSelectedTheme();
   applyTheme(selectedTheme);
 
+  // Fetch the user ID from local storage and update the username
+  getUserIdFromLocalStorage()
+    .then((userid) => {
+      if (userid) {
+        return fetchUsername(userid);
+      } else {
+        throw new Error("User ID not found in local storage");
+      }
+    })
+    .then((username) => {
+      updateUsername(username);
+      showUserSection();
+      showFavoritesButton();
+    })
+    .catch((error) => {
+      console.error("Failed to update username", error);
+    });
 
-// Function to show the user section and hide the login section
-function showUserSection() {
-  const loginSection = document.querySelector("#login-section");
-  const userSection = document.querySelector("#user-section");
-  if (loginSection && userSection) {
-    loginSection.style.display = "none";
-    userSection.style.display = "block";
-  }
-}
-
-// Function to show the favorites button
-function showFavoritesButton() {
-  const favoritesButton = document.querySelector("#get-favorite-settings-btn");
-  if (favoritesButton) {
-    favoritesButton.style.display = "block";
-  }
-}
-
-// Fetch the user ID from local storage and update the username
-getUserIdFromLocalStorage()
-  .then(userid => {
-    if (userid) {
-      return fetchUsername(userid);
-    } else {
-      throw new Error("User ID not found in local storage");
-    }
-  })
-  .then(username => {
-    updateUsername(username);
-    showUserSection();
-    showFavoritesButton();
-  })
-  .catch(error => {
-    console.error("Failed to update username", error);
-  });
-  
   // Toggle theme switch event listener
   const toggleSwitch = document.querySelector("#theme-toggle");
   if (toggleSwitch) {
@@ -65,13 +46,6 @@ getUserIdFromLocalStorage()
       updateVolumePreference(volume); // Update volume preference on the server
     });
   }
-
-  // Delete button click event listener
-  const deleteButton = document.querySelector("#delete-btn");
-  deleteButton.addEventListener("click", () => {
-    deleteSettings(); // Delete settings from local storage
-    deleteServerSettings(); // Delete settings on the server
-  });
 
   // Function to get the selected theme from local storage
   function getSelectedTheme() {
@@ -100,23 +74,23 @@ getUserIdFromLocalStorage()
 
   // Function to update the theme preference on the server
   function updateThemePreference(theme) {
-    getUserIdFromLocalStorage().then(userid => {
+    getUserIdFromLocalStorage().then((userid) => {
       if (userid) {
         fetch("/api/settings/background", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ background: theme })
+          body: JSON.stringify({ background: theme }),
         })
-          .then(response => {
+          .then((response) => {
             if (response.ok) {
               console.log("Theme preference updated successfully");
             } else {
               console.error("Failed to update theme preference");
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Failed to update theme preference", error);
           });
       } else {
@@ -146,23 +120,23 @@ getUserIdFromLocalStorage()
 
   // Function to update the volume preference on the server
   function updateVolumePreference(volume) {
-    getUserIdFromLocalStorage().then(userid => {
+    getUserIdFromLocalStorage().then((userid) => {
       if (userid) {
         fetch("/api/settings/volume", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ volume })
+          body: JSON.stringify({ volume }),
         })
-          .then(response => {
+          .then((response) => {
             if (response.ok) {
               console.log("Volume preference updated successfully");
             } else {
               console.error("Failed to update volume preference");
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Failed to update volume preference", error);
           });
       } else {
@@ -171,135 +145,197 @@ getUserIdFromLocalStorage()
     });
   }
 
-  // Function to delete the settings from local storage
-  function deleteSettings() {
-    if (confirm("Are you sure you want to delete your settings? This action cannot be undone.")) {
-      localStorage.removeItem("selectedTheme");
-      localStorage.removeItem("selectedVolume");
-      alert("Settings deleted successfully");
-    }
-  }
-
-  // Function to delete the settings on the server
-  function deleteServerSettings() {
-    getUserIdFromLocalStorage().then(userid => {
-      if (userid) {
-        fetch("/api/settings", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-          .then(response => {
-            if (response.ok) {
-              console.log("User settings deleted successfully");
-            } else {
-              console.error("Failed to delete user settings");
-            }
-          })
-          .catch(error => {
-            console.error("Failed to delete user settings", error);
-          });
-      }
-    });
-  }
-
-  // Function to get the user ID from local storage
-  function getUserIdFromLocalStorage() {
-    return new Promise(resolve => {
-      const userid = localStorage.getItem("userid");
-      resolve(userid);
-    });
-  }
-
-  // Function to fetch the username from the server
-  function fetchUsername(userid) {
-    return fetch(`/api/users/${userid}`)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch username");
-        }
-      })
-      .then(data => {
-        return data.username;
-      })
-      .catch(error => {
-        console.error("Failed to fetch username", error);
-        return "";
-      });
-  }
-
-  // Function to update the username on the settings page
-  function updateUsername(username) {
-    const usernamePlaceholder = document.querySelector("#username-placeholder");
-    if (usernamePlaceholder) {
-      usernamePlaceholder.textContent = username;
-    }
-  }
-
-  // Fetch the user ID from local storage and update the username
+  // Calling functions to Fetch the user ID from local storage and update the username
   getUserIdFromLocalStorage()
-    .then(userid => {
+    .then((userid) => {
       if (userid) {
         return fetchUsername(userid);
       } else {
         throw new Error("User ID not found in local storage");
       }
     })
-    .then(username => {
+    .then((username) => {
       updateUsername(username);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Failed to update username", error);
     });
 
-  // Function to get the favorite settings for the user
-  function getFavoriteSettings() {
-    getUserIdFromLocalStorage()
-      .then(userid => {
-        if (userid) {
-          return fetchFavoriteSettings(userid);
-        } else {
-          throw new Error("User ID not found in local storage");
-        }
-      })
-      .then(settings => {
-        displayFavoriteSettings(settings);
-      })
-      .catch(error => {
-        console.error("Failed to get favorite settings", error);
-      });
-  }
-
-  // Function to fetch the favorite settings from the server
-  function fetchFavoriteSettings(userid) {
-    return fetch(`/api/users/${userid}/favorite-settings`)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch favorite settings");
-        }
-      })
-      .catch(error => {
-        console.error("Failed to fetch favorite settings", error);
-        return {};
-      });
-  }
-
-  // Function to display the favorite settings on the settings page
-  function displayFavoriteSettings(settings) {
-    const favoriteSettingsElement = document.querySelector("#favorite-settings");
-    if (favoriteSettingsElement) {
-      favoriteSettingsElement.textContent = JSON.stringify(settings);
-    }
-  }
-
   // Add event listener to the "Get My Favorite Settings" button
-  const getFavoriteSettingsButton = document.querySelector("#get-favorite-settings-btn");
+  const getFavoriteSettingsButton = document.querySelector(
+    "#get-favorite-settings-btn"
+  );
   if (getFavoriteSettingsButton) {
     getFavoriteSettingsButton.addEventListener("click", getFavoriteSettings);
   }
 });
+
+// Function to get the user ID from local storage
+function getUserIdFromLocalStorage() {
+  return new Promise((resolve) => {
+    const userid = localStorage.getItem("userid");
+    console.log(userid);
+    resolve(userid);
+  });
+}
+
+// Function to show the user section and hide the login section
+function showUserSection() {
+  const loginSection = document.querySelector("#login-section");
+  const userSection = document.querySelector("#user-section");
+  if (loginSection && userSection) {
+    loginSection.style.display = "none";
+    userSection.style.display = "block";
+  }
+}
+
+// Function to show the favorites button
+function showFavoritesButton() {
+  const favoritesButton = document.querySelector("#get-favorite-settings-btn");
+  if (favoritesButton) {
+    favoritesButton.style.display = "block";
+  }
+}
+
+// Function to fetch the favorite settings from the server
+function fetchFavoriteSettings(userid) {
+  return fetch(`/api/settings/${userid}/favorite-settings`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to fetch favorite settings");
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to fetch favorite settings", error);
+      return {};
+    });
+}
+
+// Function to get the favorite settings for the user
+function getFavoriteSettings() {
+  getUserIdFromLocalStorage()
+    .then((userid) => {
+      if (userid) {
+        return fetchFavoriteSettings(userid);
+      } else {
+        throw new Error("User ID not found in local storage");
+      }
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((settings) => {
+      console.log(settings);
+      displayFavoriteSettings(settings);
+    })
+    .catch((error) => {
+      console.error("Failed to get favorite settings", error);
+    });
+}
+
+// Function to display the favorite settings on the settings page
+function displayFavoriteSettings(settings) {
+  const favoriteSettingsElement = document.querySelector("#favorite-settings");
+  if (favoriteSettingsElement) {
+    favoriteSettingsElement.textContent = JSON.stringify(settings);
+  }
+}
+
+// Function to fetch the favorite settings from the server
+function fetchFavoriteSettings(userid) {
+  return fetch(`/api/settings/${userid}/favorite-settings`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to fetch favorite settings");
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to fetch favorite settings", error);
+      return {};
+    });
+}
+
+// Function to display the favorite settings on the settings page
+function displayFavoriteSettings(settings) {
+  const favoriteSettingsElement = document.querySelector("#favorite-settings");
+  if (favoriteSettingsElement) {
+    favoriteSettingsElement.textContent = JSON.stringify(settings);
+  }
+}
+
+// Function to fetch the username from the server
+function fetchUsername(userid) {
+  return fetch(`/api/settings/username/${userid}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to fetch username");
+      }
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.success) {
+        alert("Username retrieved successfully.");
+        console.log(data.username);
+        return data.username;
+      } else {
+        alert("Failed to retrieve username. Please try again.");
+        console.error("Error:", data);
+        console.log("Error status:", data.status);
+        console.log("Error message:", data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to fetch username", error);
+      return "";
+    });
+}
+
+// Delete button click event listener
+const deleteButton = document.querySelector("#delete-btn");
+deleteButton.addEventListener("click", () => {
+  deleteSettings(); // Delete settings from local storage
+  deleteServerSettings(); // Delete settings on the server
+});
+
+// Function to delete the settings from local storage
+function deleteSettings() {
+  if (
+    confirm(
+      "Are you sure you want to delete your settings? This action cannot be undone."
+    )
+  ) {
+    localStorage.removeItem("selectedTheme");
+    localStorage.removeItem("selectedVolume");
+    alert("Settings deleted successfully");
+  }
+}
+
+// Function to delete the settings on the server
+function deleteServerSettings() {
+  getUserIdFromLocalStorage().then((userid) => {
+    if (userid) {
+      fetch("/api/settings/delete/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("User settings deleted successfully");
+          } else {
+            console.error("Failed to delete user settings");
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to delete user settings", error);
+        });
+    }
+  });
+}

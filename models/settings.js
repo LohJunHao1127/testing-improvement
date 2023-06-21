@@ -1,4 +1,4 @@
-const { pool } = require("../database");
+const pool = require("../database");
 const { NotFoundError } = require("../errors");
 const User = require("../models/users.js");
 
@@ -6,11 +6,13 @@ const User = require("../models/users.js");
 // Get username by user ID
 module.exports.getUsernameByUserId = async (userid) => {
   try {
-    const [result] = await pool.query("SELECT username FROM `user` WHERE userid = ?", [userid]);
+    const [result] = await pool.query("SELECT username FROM user WHERE userid = ?", [userid]);
     if (!result) {
       throw new NotFoundError(`User ${userid} not found`);
     }
-    const { username } = result;
+    console.log(result)
+    const { username } = result[0];
+    console.log(username)
     return username;
   } catch (error) {
     throw error;
@@ -21,18 +23,20 @@ module.exports.getUsernameByUserId = async (userid) => {
 // Get user settings by user ID
 module.exports.getUserSettings = async (userid) => {
   try {
-    const [settingsResult, user] = await Promise.all([
-      pool.query("SELECT * FROM settings WHERE userid = ?", [userid]),
-      User.findById(userid)
-    ]);
+    const [settingsResult] = await pool.query("SELECT * FROM settings WHERE userid = ?", [userid]);
+
 
     if (!settingsResult.length) {
       throw new NotFoundError(`Settings not found for user ${userid}`);
     }
 
     const { background, volume } = settingsResult[0];
-    const { username } = user;
-    return { username, background, volume };
+    console.log(background);
+    console.log(volume);
+
+
+
+    return { background, volume };
   } catch (error) {
     throw error;
   }
@@ -88,7 +92,7 @@ module.exports.updateBackgroundPreference = async (userid, background) => {
     ]);
     console.log("Response:", response);
     if (!response.affectedRows) {
-      throw new NotFoundError(`Settings not found for user ${userid}`);
+      throw Error(`Settings not found for user ${userid}`);
     }
   } catch (error) {
     throw error;
