@@ -104,11 +104,29 @@ router.post("/volume", async (req, res) => {
 router.delete("/delete/:userid", async (req, res) => {
   const userid = req.params.userid;
   try {
-    await settings.deleteUserSettings(userid);
-    req.session.destroy(); // Destroy the session after deleting user settings
+    const result = await settings.deleteUserSettings(userid);
+    // req.session.destroy(); // Destroy the session after deleting user settings
+
+
     res.json({ message: "User settings deleted successfully" });
   } catch (error) {
     console.error("Failed to delete user settings", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// save user settings
+router.put("/save/:userid", async (req, res) => {
+  const userid = req.params.userid;
+  const {background ,volume} = req.body;
+  try {
+    const result = await settings.saveUserSettings(userid,background ,volume);
+
+
+    
+    res.json({ message: "User settings saved successfully" });
+  } catch (error) {
+    console.error("Failed to save user settings", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });

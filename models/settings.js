@@ -43,16 +43,18 @@ module.exports.getUserSettings = async (userid) => {
 };
 
 // Create or update user settings
-module.exports.updateUserSettings = async (userid, background, volume) => {
+module.exports.saveUserSettings = async (userid, background, volume) => {
   try {
     const existingSettings = await pool.query("SELECT * FROM settings WHERE userid = ?", [userid]);
-    if (existingSettings.length) {
+    console.log(existingSettings.length)
+    console.log(existingSettings[0].length)
+    if (existingSettings[0].length) {
       // Settings exist, perform an update
       const response = await pool.query(
         "UPDATE settings SET background = ?, volume = ? WHERE userid = ?",
         [background, volume, userid]
       );
-      if (!response.affectedRows) {
+      if (!response[0].affectedRows) {
         throw new Error(`Failed to update settings for user ${userid}`);
       }
     } else {
@@ -61,7 +63,7 @@ module.exports.updateUserSettings = async (userid, background, volume) => {
         "INSERT INTO settings (userid, background, volume) VALUES (?, ?, ?)",
         [userid, background, volume]
       );
-      if (!response.affectedRows) {
+      if (!response[0].affectedRows) {
         throw new Error(`Failed to create settings for user ${userid}`);
       }
     }
@@ -74,9 +76,10 @@ module.exports.updateUserSettings = async (userid, background, volume) => {
 module.exports.deleteUserSettings = async (userid) => {
   try {
     const response = await pool.query("DELETE FROM settings WHERE userid = ?", [userid]);
-    if (!response.affectedRows) {
-      throw new NotFoundError(`Settings not found for user ${userid}`);
+    if (!response[0].affectedRows) {
+      throw new Error(`Settings not found for user ${userid}`);
     }
+    return response[0].affectedRows;
   } catch (error) {
     throw error;
   }
@@ -91,7 +94,7 @@ module.exports.updateBackgroundPreference = async (userid, background) => {
       userid,
     ]);
     console.log("Response:", response);
-    if (!response.affectedRows) {
+    if (!response[0].affectedRows) {
       throw Error(`Settings not found for user ${userid}`);
     }
   } catch (error) {
@@ -108,8 +111,8 @@ module.exports.updateVolumePreference = async (userid, volume) => {
       userid,
     ]);
     console.log("Response:", response);
-    if (!response.affectedRows) {
-      throw new NotFoundError(`Settings not found for user ${userid}`);
+    if (!response[0].affectedRows) {
+      throw new Error(`Settings not found for user ${userid}`);
     }
   } catch (error) {
     throw error;
