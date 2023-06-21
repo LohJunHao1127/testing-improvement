@@ -109,11 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error("User ID not found in local storage");
         }
       })
-      .then((response) => {
-        return response.json();
-      })
+
       .then((settings) => {
         console.log(settings);
+        settings = {background:settings.background ,volume:settings.volume}
         displayFavoriteSettings(settings);
       })
       .catch((error) => {
