@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../pages/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../scripts/populate.js"></script>
+    <script src="../scripts/updateUser.js"></script>
+    <script src="../scripts/deleteUser.js"></script>
+    <title>Login</title>
+    <style>
+        /* Custom styles for the profile page */
+        body {
+            background-color: #191414; /* Spotify black background color */
+        }
+    
+        .center-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    
+        .container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+    
+        .d-flex {
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+    
+        .rounded-circle {
+            border: 5px solid #191414; /* Spotify black border for profile image */
+            margin-top: 10px; /* Add margin to move the image down slightly */
+        }
+    
+        .labels {
+            color: #1DB954; /* Spotify green color for labels */
+        }
+    
+        .form-control {
+            background-color: #191414;
+            border-color: #1DB954; /* Spotify green color for form controls */
+            color: #ffffff;
+        }
+    
+        .profile-button,
+        .delete-button {
+            background-color: #1DB954; /* Spotify green color for buttons */
+            border: none;
+        }
+    
+        .profile-button:hover,
+        .delete-button:hover {
+            background-color: #1aa34a; /* Slightly darker green on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center-screen">
+        <div class="container rounded bg-white mt-5 mb-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-6 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5"
+                            width="150px"
+                            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        <span class="font-weight-bold"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right labels">Profile Settings</h4>
+                        </div>
+                        <form class="register-form">
+                            <div class="row mt-2">
+                                <div class="col-md-12"><label class="labels">Username</label><input id="username" type="text"
+                                        class="form-control" placeholder="Username" value=""></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Email</label><input id="email" type="text"
+                                        class="form-control" placeholder="Email" value=""></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Password</label><input id="password" type="password"
+                                        class="form-control" placeholder="Password" value=""></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Repeat Password</label><input id="repeat-password" type="password"
+                                        class="form-control" placeholder="Repeat Password" value=""></div>
+                            </div>
+                            <div class="mt-5">
+                                <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                            </div>
+                            <div class="mt-5">
+                                <button class="btn btn-primary delete-button" type="submit">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

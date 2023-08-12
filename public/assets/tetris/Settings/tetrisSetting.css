@@ -1,0 +1,132 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: block;
+}
+
+
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/tetris_backGround.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    /* Adjust the opacity value as needed */
+    z-index: -1;
+
+}
+
+
+
+
+.title {
+    text-align: center;
+    font-size: 60px;
+    padding-top: 40px;
+}
+
+.container {
+    margin-top: 25px;
+    font-size: larger;
+    background-color: #333;
+    border-radius: 15px;
+    display: flex;
+    width: 100%;
+    text-align: center;
+
+
+
+}
+
+div.left {
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    background-color: #000;
+    border-radius: 15px;
+    text-align: center;
+    margin: 10px;
+}
+
+.instructions-title{
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.instructions-intro{
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+div.right {
+    float: right;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    margin: 10px;
+
+    background-color: #000;
+    border-radius: 15px;
+}
+
+
+
+form#keyConfigForm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#firstPart {
+    display: inline-block;
+    width: 100%;
+    
+}
+
+#SecoundPart {
+    display: inline-block;
+    width: 100%;
+    
+}
+
+input {
+    margin: 5px;
+    width: 150px;
+    text-align: center;
+    background-color: rgba(3, 3, 3, 0.5);
+    color: #ccc;
+    
+    border-radius: 5px;
+}
+
+input#Save-button {
+    margin: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+/* From Xavier */
+
+/* Background Themes */
+.theme-dark {
+    background-color: #222;
+    color: #fff;
+}
+
+.theme-light {
+    background-color: #f2f2f2;
+    color: #333;
+}

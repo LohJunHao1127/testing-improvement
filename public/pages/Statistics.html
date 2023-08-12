@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test records</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style src="./styles/Statistics.css"></style>
+    <script src="../scripts/Statistics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="container">
+
+    <div class="py-5 text-center">
+        <h1>Display Records for the Game</h1>
+        
+        <div class="d-flex align-items-center">
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r1" value="1" checked>
+                <label class="form-check-label" for="gameid-r1">
+                    Snake
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r2" value="2">
+                <label class="form-check-label" for="gameid-r2">
+                    2048
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r3" value="3">
+                <label class="form-check-label" for="gameid-r3">
+                    Space Invaders
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r4" value="4">
+                <label class="form-check-label" for="gameid-r4">
+                    Tetris
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r5" value="5">
+                <label class="form-check-label" for="gameid-r5">
+                    Planet Defense
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r6" value="6">
+                <label class="form-check-label" for="gameid-r6">
+                    Blackjack
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-records" id="gameid-r7" value="7">
+                <label class="form-check-label" for="gameid-r7">
+                    MineSweeper
+                </label>
+            </div>
+            <button id="displayRecords" class="btn btn-primary">Display</button>
+        </div>
+        <canvas id="RecordsChart" class="my-4"></canvas>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="py-5 text-center">
+        <h1>Display Leaderboard</h1>
+        
+        <div class="d-flex align-items-center">
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l1" value="1" checked>
+                <label class="form-check-label" for="gameid-l1">
+                    Snake
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l2" value="2">
+                <label class="form-check-label" for="gameid-l2">
+                    2048
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l3" value="3">
+                <label class="form-check-label" for="gameid-l3">
+                    Space Invaders
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l4" value="4">
+                <label class="form-check-label" for="gameid-l4">
+                    Tetris
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l5" value="5">
+                <label class="form-check-label" for="gameid-l5">
+                    Planet Defense
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l6" value="6">
+                <label class="form-check-label" for="gameid-l6">
+                    Blackjack
+                </label>
+            </div>
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" name="gameid-leaderboard" id="gameid-l7" value="7">
+                <label class="form-check-label" for="gameid-l7">
+                    MineSweeper
+                </label>
+            </div>
+            <button id="displayLeaderboard" class="btn btn-primary">Display</button>
+        </div>
+
+        <canvas id="leaderboardChart" class="my-4"></canvas>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="py-5 text-center">
+        <h1>Display Games Played Over Time</h1>
+        
+
+
+        <canvas id="GamesPlayedOverTimeChart" class="my-4"></canvas>
+    </div>
+    <div class="py-5 text-center">
+        <h1>Display Total Populatiy</h1>
+        
+
+
+        <canvas id="GamesPopularityChart" class="my-4"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

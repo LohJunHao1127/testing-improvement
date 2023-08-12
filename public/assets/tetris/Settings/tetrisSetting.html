@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tetris Home Page</title>
+    <link rel="stylesheet" href="tetrisSetting.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+
+</head>
+
+<body class="theme-dark">
+    <h1 class="title">Tetris Game</h1>
+
+    <div>
+        <div class="container">
+
+            <div class="left">
+                <div class="instructions-title">
+                    How To Play:
+                </div>
+
+
+                <div class="instructions-intro">
+                    <p>Use the arrow keys to move the blocks left, right, and down.</p>
+                    <p>Use the space bar to drop the blocks.</p>
+                    <p>Use the "c" key to Hold the blocks.</p>
+                    <p>Press the "x" key to pause the game.</p>
+
+                </div>
+
+            </div>
+            <div class="right">
+                <div>
+                    Settings
+                </div>
+                <div>
+                    <form id="keyConfigForm" autocomplete="off" spellcheck="false">
+                        <div id="firstPart">
+                            <div class="input-container">
+                                <label for="rotateInput">Rotate</label>
+                                <input type="text" name="rotate" id="rotateInput">
+                            </div>
+                            <div class="input-container">
+                                <label for="leftInput">Left</label>
+                                <input type="text" name="left" id="leftInput">
+                            </div>
+                            <div class="input-container">
+                                <label for="rightInput">Right</label>
+                                <input type="text" name="right" id="rightInput">
+                            </div>
+                            <div class="input-container"> 
+                                <label for="downInput">Soft Down</label>
+                                <input type="text" name="down" id="downInput">
+                            </div>
+
+
+
+                        </div>
+                        <div id="SecoundPart">
+                            <div class="input-container">
+                                <label for="dropInput">Hard Drop</label>
+                                <input type="text" name="drop" id="dropInput">
+                            </div>
+                            <div class="input-container">
+                                <label for="holdInput">Hold</label>
+                                <input type="text" name="hold" id="holdInput">
+                            </div>
+                            <div class="input-container">
+                                <label for="pauseInput">Pause</label>
+                                <input type="text" name="pause" id="pauseInput">
+                            </div>
+                            <div class="input-container">
+                                <label for="restartInput">Restart</label>
+                                <input type="text" name="restart" id="restartInput">
+                            </div>
+                        </div>
+
+
+                        <input type="submit" value="Save" id="Save-button" class="btn btn-primary">
+                        <input type="submit" value="Reset" id="Reset-button" class="btn btn-danger">
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="tetrisSetting.js"></script>
+</body>
+
+</html>

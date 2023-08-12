@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .button:active {
+    background-color: #555;
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+  
+  .button-container.dark-theme .button {
+    background-color: #333;
+    color: #fff;
+    border-color: #fff;
+  }
+  
+  .button-container.dark-theme .button:hover {
+    background-color: #fff;
+    color: #333;
+    border-color: #333;
+  }
+  
+  .theme-light {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .theme-dark {
+    background-color: #333;
+    color: #fff;
+  }
+  

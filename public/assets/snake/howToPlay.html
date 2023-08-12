@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Snake</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Javascripts   Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="box2">
+      <div style="margin: 30px">
+        <h1
+          style="
+            display: flex;
+            justify-content: center;
+            color: aliceblue;
+            font-family: 'VT323', monospace;
+          "
+        >
+          How to Play
+        </h1>
+      </div>
+      <br />
+      <div class="keyboard">
+        <div class="arrow-pad">
+          <div class="arrow-row">
+            <div class="arrow-key">
+              <span class="arrow-icon">↑</span>
+              <span class="arrow-action">Move Up</span>
+            </div>
+          </div>
+          <div class="arrow-row">
+            <div class="arrow-key">
+              <span class="arrow-icon">←</span>
+              <span class="arrow-action">Move Left</span>
+            </div>
+            <div class="empty-cell"></div>
+            <div class="arrow-key">
+              <span class="arrow-icon">→</span>
+              <span class="arrow-action">Move Right</span>
+            </div>
+          </div>
+          <div class="arrow-row">
+            <div class="arrow-key">
+              <span class="arrow-icon">↓</span>
+              <span class="arrow-action">Move Down</span>
+            </div>
+          </div>
+        </div>
+        <div class="space-key" style="width: 300px">
+          <span class="space-icon">Space bar</span>
+          <span class="space-action">Increase Speed</span>
+        </div>
+      </div>
+      <br /><br /><br /><br />
+      <div style="margin: 30px">
+        <h1
+          style="
+            display: flex;
+            justify-content: center;
+            color: aliceblue;
+            font-family: 'VT323', monospace;
+          "
+        >
+          Game Modes
+        </h1>
+      </div>
+      <div class="game-mode">
+        <div class="game-mode-content">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn4YcgDB5AEIVwlwiBSxJSarBQ7IZOFB3yLA&usqp=CAU"
+            alt="Classic Mode"
+          />
+          <div class="text-content">
+            <h2>Classic Mode</h2>
+            <div class="content">
+              <p>
+                Step into the nostalgia of the original snake game. Control the
+                slithering creature and grow longer with each bite. Challenge
+                your reflexes and strategy as you navigate the maze-like arena.
+                Collect tasty treats, but beware of your own tail!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-mode">
+        <div class="game-mode-content">
+          <div class="text-content">
+            <h2>Timed Mode</h2>
+            <div class="content">
+              <p>
+                Race against the clock in this adrenaline-pumping challenge! You
+                have a mere 100 seconds to conquer the snake arena. To keep you
+                on your toes, the delicious treats shift positions every 2
+                seconds.
+              </p>
+            </div>
+          </div>
+          <img
+            src="data:image/png;base64,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"
+            alt="Timed Mode"
+          />
+        </div>
+      </div>
+      <div class="game-mode">
+        <div class="game-mode-content">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR47Oj3R09DulUzoq8GeVcKFbdk5y76t8CcbA&usqp=CAU"
+            alt="Survival Mode"
+          />
+          <div class="text-content">
+            <h2>Survival Mode</h2>
+            <div class="content">
+              <p>
+                Embark on an intense survival journey where danger lurks at
+                every turn. Dodge relentless enemies that chase your snake's
+                head. A single collision will chip away at your score, but your
+                snake will keep growing. The longer you become, the more foes
+                arise!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-mode">
+        <div class="game-mode-content">
+          <div class="text-content">
+            <h2>Multiplayer Mode</h2>
+            <div class="content">
+              <p>
+                Engage in intense Multiplayer battles. Navigate a shared arena
+                with real players, each commanding their own snake.Hunt for food
+                and seize power-ups tactically strewn across the battlefield.<b>
+                  A TWIST AWAITS</b
+                >: while collisions are off the table, you can artfully glide
+                through your snake's body. It's a heart-racing showdown of
+                strategy and speed. Don't hold back—join the fray and claim
+                supremacy now!
+              </p>
+            </div>
+          </div>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDnT0jxsA7j7nUPmpOWTmSCWKFuqsVcIpMSg&usqp=CAU"
+            alt="Multiplayer Mode"
+          />
+        </div>
+      </div>
+
+      <br /><br /><br />
+      <div style="margin: 30px">
+        <h1
+          style="
+            display: flex;
+            justify-content: center;
+            color: aliceblue;
+            font-family: 'VT323', monospace;
+          "
+        >
+          Legends
+        </h1>
+      </div>
+      <div class="legend-items">
+        <div class="legend-item orange">
+          <div class="color-box"></div>
+          <div class="legend-item-content">
+            <p>
+              Orange represents the delectable food that fuels your journey.
+              Consume these to grow longer and strengthen your snake's vitality.
+            </p>
+          </div>
+        </div>
+        <div class="legend-item blue">
+          <div class="color-box"></div>
+          <div class="legend-item-content">
+            <p>
+              The color blue signifies a unique power. Upon consumption, it
+              grants your snake the ability to stun enemies, turning the tide of
+              the game in your favor.
+            </p>
+          </div>
+        </div>
+        <div class="legend-item yellow">
+          <div class="color-box"></div>
+          <div class="legend-item-content">
+            <p>
+              Yellow signifies a potent opportunity. Devour the yellow treats to
+              witness your score double, propelling you towards greater
+              achievements(Only in multiplayer mode)
+            </p>
+          </div>
+        </div>
+        <div class="legend-item other-color">
+          <div class="color-box"></div>
+          <div class="legend-item-content">
+            <p>
+              Encounter the mystical aura of other-colored food. Ingesting these
+              renders you invincible, shielded from danger for precious moments,
+              as you navigate the challenges ahead (Only in multiplayer mode)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

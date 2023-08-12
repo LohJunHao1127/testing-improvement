@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chess Homepage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Reset default margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Body styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("./img/background.jpg"); /* Add your image path here */
+      background-size: cover;
+      background-color: #0e1114;
+      color: #ffffff;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #2d2e30;
+      padding: 20px 0;
+      text-align: center;
+      position: relative; /* Add position relative */
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    /* Chess icon */
+    .chess-icon {
+      font-size: 32px;
+      color: #f0b800;
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    /* Button styles */
+    .button-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .button {
+      padding: 12px 32px;
+      font-size: 18px;
+      background-color: #f0b800;
+      color: #000000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e59e00;
+    }
+
+    /* Overlay styles */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .login-form {
+      background-color: #36393f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      max-width: 300px;
+      width: 100%;
+      color: #fff;
+    }
+
+    /* Form styles */
+    .login-form h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .login-form label {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      background-color: #202225;
+      border: 1px solid #36393f;
+      color: #fff;
+      border-radius: 4px;
+    }
+
+    .login-form button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #7289da;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-form button[type="submit"]:hover {
+      background-color: #677bc4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <i class="fas fa-chess-board chess-icon"></i>
+    <h1>Chess</h1>
+  </header>
+
+  <div class="button-container">
+    <a href="./chess.html" class="button">Practice</a>
+  </div>
+  <div class="button-container">
+    <a href="#" class="button" id="secondUserLogin">Second User Login</a>
+  </div>
+  <div id="chessLeaderBoardContainer"></div>
+
+  <!-- Overlay 1 -->
+  <div class="overlay" id="loginOverlay">
+    <div class="login-form">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Overlay 1 for secondary user to login
+    document
+      .getElementById("secondUserLogin")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("loginOverlay").style.display = "flex";
+      });
+  </script>
+</body>
+</html>

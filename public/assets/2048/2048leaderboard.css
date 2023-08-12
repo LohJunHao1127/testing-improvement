@@ -1,0 +1,98 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for the leaderboard section */
+.leaderboard-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+#leaderboard {
+  list-style: none;
+}
+
+#leaderboard li {
+  margin-bottom: 10px;
+}
+
+/* Styling for the personal score section */
+.personal-score-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#personalScore {
+  margin-bottom: 10px;
+}
+
+#deleteScore {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#deleteScore:hover {
+  background-color: #d32f2f;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  margin-right: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Themes */
+.theme-light {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.theme-dark {
+  background-color: #333;
+  color: #000; /* Set text color to black in dark mode */
+}

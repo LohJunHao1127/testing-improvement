@@ -1,0 +1,66 @@
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: block;
+}
+
+
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/tetris_backGround.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Adjust the opacity value as needed */
+    z-index: -1;
+    
+}
+
+
+
+
+.title{
+    text-align: center;
+    font-size: 60px;
+    padding-top: 40px;
+}
+
+.button-container {
+    margin-top: 200px;
+    text-align: center;
+    font-size: larger;
+
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+
+}
+.footer-text{
+    font-size: medium;
+}
+/* From Xavier */
+
+/* Background Themes */
+.theme-dark {
+    background-color: #222;
+    color: #fff;
+}
+
+.theme-light {
+    background-color: #f2f2f2;
+    color: #333;
+}

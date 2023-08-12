@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2048</title>
+  <link rel="stylesheet" href="2048.css" />
+</head>
+
+<body class="theme-dark">
+  <div class="navbar">
+    <ul>
+      <li><a href="../../pages/profile.html">View profile</a></li>
+      <li><a href="../../pages/settings.html">Settings</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="leaderboard-btn">
+    <button onclick="viewLeaderboard()">View Leaderboard</button>
+  </div>
+<!-- 
+  <div class="personal-scores-btn">
+    <button onclick="viewPersonalHighscore()">Personal Highscore</button>
+  </div> -->
+  
+  <h1>2048</h1>
+  <hr />
+
+  <div id="game">
+    <div class="score-container">
+      <div>
+        <span class="score-label">Score:</span>
+        <span class="score-value" id="score">0</span>
+      </div>
+      <div>
+        <span class="score-label">High Score:</span>
+        <span class="score-value" id="highscore">0</span>
+      </div>
+    </div>
+    <div class="timer-container">
+      <span class="timer-label">Time:</span>
+      <span class="timer-value" id="timer">0</span>
+    </div>
+    <div id="board"></div>
+  </div>
+
+  <div id="popup" class="popup">
+    <p>
+      You lost! Score: <span id="popup-score"></span> Time taken:
+      <span id="popup-time"></span>
+    </p>
+    <button onclick="resetGame()">New Game</button>
+    <button onclick="goToHomepage()">Exit to Homepage</button>
+    <button onclick="goToSettings()">Go to Settings</button>
+  </div>
+
+  <script src="2048.js"></script>
+  <script src="../../scripts/theme.js"></script>
+</body>
+</html>

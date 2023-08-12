@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Homepage</title>
+  <link rel="stylesheet" href="2048home.css">
+  <script src="../../scripts/theme.js"></script>
+</head>
+<body class="theme-light">
+  <div class="container">
+    <h1 id="welcomeMessage">Welcome to 2048!</h1>
+    <div class="button-container">
+      <button onclick="goToHomePage()" class="button">Main Page</button>
+      <button onclick="goToGamePage()" class="button">Play Game</button>
+      <button onclick="goToLeaderboardPage()" class="button">Leaderboard</button>
+      <button onclick="goToSettingsPage()" class="button">Settings</button>
+      <button onclick="showLogoutConfirmation()" class="button" id="logoutButton">Logout</button>
+      <button onclick="goToLoginPage()" class="button" id="loginButton">Login</button>
+    </div>
+  </div>
+
+  <script src="2048home.js"></script>
+</body>
+</html>

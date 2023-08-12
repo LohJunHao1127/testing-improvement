@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Over</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e5e5e5;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+      }
+
+      .elo-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+
+      .player {
+        text-align: center;
+      }
+
+      .player-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .player-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-color: #ddd; /* Placeholder color */
+      }
+
+
+      .elo-score {
+        font-size: 36px;
+        margin-top: 10px;
+        color: #d93333;
+      }
+
+      .result-message {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 30px;
+        color: #333;
+      }
+
+      .button-container {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #7289da;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Game Over</h1>
+      <div class="elo-container">
+        <div class="player">
+          <img  src="img/player1_pfp.jpg" alt ="Player 1" class="player-image" name="playerImage" />
+          <div class="player-name" name="playerName"></div>
+          <div class="elo-score" name="eloScore"></div>
+        </div>
+        <div class="player">
+          <img src="img/player2_pfp.jpg" alt="Player 2" class="player-image" name=" playerImage"/>
+          <div class="player2-name">Player 2</div>
+          <div class="elo2-score">1600</div>
+        </div>
+      </div>
+      <div class="result-message">Player 2 wins!</div>
+      <div class="button-container">
+        <a href="../chess/chess.html" class="button">Rematch</a>
+        <a href="../chess/chess.html" class="button">Back</a>
+      </div>
+    </div>
+    <script src="game-over.js"></script>
+    <script src="elo-alogrithm.js"></script>
+  </body>
+</html>

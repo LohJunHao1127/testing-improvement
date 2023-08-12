@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 - Leaderboard</title>
+  <link rel="stylesheet" href="2048leaderboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
+  <script src="2048leaderboard.js"></script>
+  <script src="../../scripts/theme.js"></script>
+</head>
+<body class="theme-light">
+  <div class="container">
+    <h1>2048 Leaderboard</h1>
+
+    <div class="leaderboard-container">
+      <h2>Leaderboard</h2>
+      <button id="displayLeaderboardButton">Display Leaderboard</button>
+      <!-- Add a canvas element for the chart -->
+      <div id="leaderboard">
+        <canvas id="leaderboardChart"></canvas>
+      </div>
+    </div>
+
+    <div class="personal-score-container">
+      <h2>Personal Score</h2>
+      <div id="personalScore"></div>
+      <button id="displayRecordsButton">Display Records</button>
+      <button id="displayPersonalBestButton">Display Personal Best</button>
+      <button id="deleteScore">Delete Score</button>
+    </div>
+
+    <div class="navigation-container">
+      <button id="backToHome" onclick="goToHomepage()">Back to 2048 Home Page</button>
+      <button id="backToGame" onclick="goToGame()">Back to Playing 2048</button>
+      <button id="goToSettingsPage" onclick="goToSettingsPage()">Go to Settings Page</button>
+    </div>
+  </div>
+</body>
+</html>
