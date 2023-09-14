@@ -29,16 +29,19 @@ module.exports.createNewScoreChallenge = function (userid, score) {
           });
       } else {
         console.log(rows[0]);
-        console.log(phase);
-        let insertPhase;
+        console.log(phase + "insertlogic main");
+        let insertPhase = null;
         switch (phase) {
           case "phase_1":
+            console.log(phase + "insertlogic main phase 1");
             insertPhase = "phase_2";
             break;
           case "phase_2":
             insertPhase = "phase_3";
+            console.log(phase + "insertlogic main phase 2");
             break;
           case "phase_3":
+            console.log(phase + "insertlogic main phase 3");
             return pool
               .query(
                 "INSERT INTO tetris_challenge (userid, score, phase) VALUES (?, (SELECT SUM(score) AS total_score FROM (SELECT score FROM tetris_challenge WHERE userid = ? ORDER BY timestamp DESC LIMIT 3) AS last_scores), ?)",
@@ -53,26 +56,31 @@ module.exports.createNewScoreChallenge = function (userid, score) {
               .catch((error) => {
                 throw new Error(`Failed to insert score: ${error.message}`);
               });
+            
           case "Completed":
+            console.log(phase + "insertlogic main Completed");
             insertPhase = "phase_1";
+            break;
           default:
             throw new Error(`Invalid phase: ${phase}`);
         }
+        if (insertPhase != null) {
+          return pool
+            .query(
+              "INSERT INTO tetris_challenge (userid, score, phase) VALUES (?, ?, ?)",
+              [userid, score, insertPhase]
+            )
+            .then(() => {
+              return {
+                success: true,
+                message: "Score inserted successfully.",
+              };
+            })
+            .catch((error) => {
+              throw new Error(`Failed to insert score: ${error.message}`);
+            });
+        }
 
-        return pool
-          .query(
-            "INSERT INTO tetris_challenge (userid, score, phase) VALUES (?, ?, ?)",
-            [userid, score, insertPhase]
-          )
-          .then(() => {
-            return {
-              success: true,
-              message: "Score inserted successfully.",
-            };
-          })
-          .catch((error) => {
-            throw new Error(`Failed to insert score: ${error.message}`);
-          });
       }
     });
 };
